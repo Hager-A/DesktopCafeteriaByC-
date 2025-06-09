@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtpassword = new TextBox();
@@ -40,7 +41,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.OIP;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(319, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(144, 125);

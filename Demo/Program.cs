@@ -33,7 +33,11 @@ namespace Demo
             }
 
             Employee em = EmployeeManager.GetEmployee(email, password);
-            Console.WriteLine(em);
+            Console.WriteLine(em.Name);
+            Console.WriteLine(em.Name==null);
+            //Console.WriteLine(em.Name.GetType());
+            //Console.WriteLine(em.Name== "ND");
+
 
 
 

@@ -47,7 +47,7 @@ namespace WinFormsApp1
                     }
                     else
                     {
-                        Emp emp = new Emp();
+                        Emp emp = new Emp(em);
                         emp.ShowDialog();
 
                     }

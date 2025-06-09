@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopProject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,18 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    public partial class Emp: Form
+    public partial class Emp : Form
     {
-        public Emp()
+        Employee em = new Employee();
+        public Emp(Employee e)
         {
+            em = e;
             InitializeComponent();
+        }
+
+        private void Emp_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

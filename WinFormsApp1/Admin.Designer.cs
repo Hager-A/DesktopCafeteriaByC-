@@ -29,76 +29,78 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            label1 = new Label();
+            btnuser = new Button();
+            btnproduct = new Button();
+            btnorder = new Button();
+            btnexit = new Button();
+            lbluser = new Label();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // btnuser
             // 
-            button1.BackColor = Color.FromArgb(128, 64, 0);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(39, 96);
-            button1.Name = "button1";
-            button1.Size = new Size(170, 53);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = false;
+            btnuser.BackColor = Color.FromArgb(128, 64, 0);
+            btnuser.FlatStyle = FlatStyle.Flat;
+            btnuser.Font = new Font("Segoe UI", 12F);
+            btnuser.ForeColor = Color.White;
+            btnuser.Location = new Point(39, 96);
+            btnuser.Name = "btnuser";
+            btnuser.Size = new Size(170, 53);
+            btnuser.TabIndex = 0;
+            btnuser.Text = "User";
+            btnuser.UseVisualStyleBackColor = false;
+            btnuser.Click += btnuser_Click;
             // 
-            // button2
+            // btnproduct
             // 
-            button2.BackColor = Color.FromArgb(128, 64, 0);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(39, 182);
-            button2.Name = "button2";
-            button2.Size = new Size(170, 53);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = false;
+            btnproduct.BackColor = Color.FromArgb(128, 64, 0);
+            btnproduct.FlatStyle = FlatStyle.Flat;
+            btnproduct.Font = new Font("Segoe UI", 12F);
+            btnproduct.ForeColor = Color.White;
+            btnproduct.Location = new Point(39, 182);
+            btnproduct.Name = "btnproduct";
+            btnproduct.Size = new Size(170, 53);
+            btnproduct.TabIndex = 1;
+            btnproduct.Text = "Product";
+            btnproduct.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnorder
             // 
-            button3.BackColor = Color.FromArgb(128, 64, 0);
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 12F);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(39, 276);
-            button3.Name = "button3";
-            button3.Size = new Size(170, 53);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = false;
+            btnorder.BackColor = Color.FromArgb(128, 64, 0);
+            btnorder.FlatStyle = FlatStyle.Flat;
+            btnorder.Font = new Font("Segoe UI", 12F);
+            btnorder.ForeColor = Color.White;
+            btnorder.Location = new Point(39, 276);
+            btnorder.Name = "btnorder";
+            btnorder.Size = new Size(170, 53);
+            btnorder.TabIndex = 2;
+            btnorder.Text = "Order";
+            btnorder.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnexit
             // 
-            button4.BackColor = Color.FromArgb(128, 64, 0);
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 12F);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(39, 358);
-            button4.Name = "button4";
-            button4.Size = new Size(170, 53);
-            button4.TabIndex = 3;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = false;
+            btnexit.BackColor = Color.FromArgb(128, 64, 0);
+            btnexit.FlatStyle = FlatStyle.Flat;
+            btnexit.Font = new Font("Segoe UI", 12F);
+            btnexit.ForeColor = Color.White;
+            btnexit.Location = new Point(39, 358);
+            btnexit.Name = "btnexit";
+            btnexit.Size = new Size(170, 53);
+            btnexit.TabIndex = 3;
+            btnexit.Text = "Exit";
+            btnexit.UseVisualStyleBackColor = false;
+            btnexit.Click += btnexit_Click;
             // 
-            // label1
+            // lbluser
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(98, 44);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 4;
-            label1.Text = "label1";
-            label1.Click += label1_Click;
+            lbluser.AutoSize = true;
+            lbluser.Location = new Point(98, 44);
+            lbluser.Name = "lbluser";
+            lbluser.Size = new Size(50, 20);
+            lbluser.TabIndex = 4;
+            lbluser.Text = "label1";
+            lbluser.Click += label1_Click;
             // 
             // pictureBox1
             // 
@@ -117,11 +119,11 @@
             BackColor = SystemColors.Info;
             ClientSize = new Size(800, 450);
             Controls.Add(pictureBox1);
-            Controls.Add(label1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(lbluser);
+            Controls.Add(btnexit);
+            Controls.Add(btnorder);
+            Controls.Add(btnproduct);
+            Controls.Add(btnuser);
             Name = "Admin";
             Text = "Admin";
             Load += Admin_Load;
@@ -132,11 +134,11 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Label label1;
+        private Button btnuser;
+        private Button btnproduct;
+        private Button btnorder;
+        private Button btnexit;
+        private Label lbluser;
         private PictureBox pictureBox1;
     }
 }

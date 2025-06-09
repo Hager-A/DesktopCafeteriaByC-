@@ -22,12 +22,30 @@ namespace WinFormsApp1
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            Text = $" Admin {em.Name}";
+            //Text = $" Admin {em.Name}";
+            lbluser.Text = em.Name;
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnuser_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Users user = new Users(em);
+            user.ShowDialog();
+            this.Close();
+        }
+
+        private void btnexit_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 login = new Form1();
+            login.ShowDialog();
+            this.Close();
         }
     }
 }

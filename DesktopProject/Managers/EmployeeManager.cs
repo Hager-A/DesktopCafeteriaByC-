@@ -37,5 +37,12 @@ namespace DesktopProject
 
             return res;
         }
+
+
+        public static int Insert(Employee employee)
+        {
+            int x = db.ExecuteNonQuery($"insert into Employees(Email,Name,Password,Role) values('{employee.Email}','{employee.Name}','{employee.Password}','{employee.Role}')");
+            return x;
+        }
     }
 }

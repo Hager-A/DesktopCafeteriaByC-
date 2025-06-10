@@ -23,6 +23,19 @@ namespace DesktopProject
             }
             return res;
         }
+        //////
+        public static Employee CheckEmployee(string email)
+        {
+            DataTable dt = db.GetDataTable($"select *from Employees where Email='{email}'");
+            Employee res = new Employee();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                res = ConvertFromDataRowToEmp(dr);
+
+            }
+            return res;
+        }
         //////////////
         public static EmployeeList GetListEmployee( string Role)
         {
@@ -65,6 +78,12 @@ namespace DesktopProject
         public static int Insert(Employee employee)
         {
             int x = db.ExecuteNonQuery($"insert into Employees(Email,Name,Password,Role) values('{employee.Email}','{employee.Name}','{employee.Password}','{employee.Role}')");
+            return x;
+        }
+
+        public static int Update(Employee employee)
+        {
+            int x = db.ExecuteNonQuery($"UPDATE employees SET Email = '{employee.Email}', Name = '{employee.Name}' ,Password='{employee.Password}',Role='{employee.Role}' WHERE Id = {employee.Id};");
             return x;
         }
     }

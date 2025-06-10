@@ -144,6 +144,7 @@
             btnadd.TabIndex = 10;
             btnadd.Text = "Add";
             btnadd.UseVisualStyleBackColor = false;
+            btnadd.Click += btnadd_Click;
             // 
             // btnedit
             // 
@@ -156,20 +157,26 @@
             btnedit.TabIndex = 11;
             btnedit.Text = "Edit";
             btnedit.UseVisualStyleBackColor = false;
+            btnedit.Click += btnedit_Click;
             // 
             // dgvemployee
             // 
+            dgvemployee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvemployee.BackgroundColor = SystemColors.Info;
             dgvemployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvemployee.Location = new Point(292, 42);
             dgvemployee.Name = "dgvemployee";
+            dgvemployee.ReadOnly = true;
             dgvemployee.RowHeadersWidth = 51;
+            dgvemployee.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvemployee.Size = new Size(509, 406);
             dgvemployee.TabIndex = 12;
+            dgvemployee.CellClick += dgvemployee_CellClick;
             // 
             // radioButton1
             // 
             radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
             radioButton1.Location = new Point(292, 12);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(74, 24);
@@ -177,6 +184,7 @@
             radioButton1.TabStop = true;
             radioButton1.Text = "Admin";
             radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -185,9 +193,9 @@
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(96, 24);
             radioButton2.TabIndex = 14;
-            radioButton2.TabStop = true;
             radioButton2.Text = "Employee";
             radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // cmbrole
             // 

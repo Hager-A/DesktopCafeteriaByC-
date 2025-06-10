@@ -39,12 +39,12 @@
             label5 = new Label();
             btnadd = new Button();
             btnedit = new Button();
-            dataGridView1 = new DataGridView();
+            dgvemployee = new DataGridView();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             cmbrole = new ComboBox();
             btnback = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             SuspendLayout();
             // 
             // txtname
@@ -157,15 +157,15 @@
             btnedit.Text = "Edit";
             btnedit.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvemployee
             // 
-            dataGridView1.BackgroundColor = SystemColors.Info;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(292, 42);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(509, 406);
-            dataGridView1.TabIndex = 12;
+            dgvemployee.BackgroundColor = SystemColors.Info;
+            dgvemployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvemployee.Location = new Point(292, 42);
+            dgvemployee.Name = "dgvemployee";
+            dgvemployee.RowHeadersWidth = 51;
+            dgvemployee.Size = new Size(509, 406);
+            dgvemployee.TabIndex = 12;
             // 
             // radioButton1
             // 
@@ -220,7 +220,7 @@
             Controls.Add(cmbrole);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvemployee);
             Controls.Add(btnedit);
             Controls.Add(btnadd);
             Controls.Add(label5);
@@ -235,7 +235,7 @@
             Name = "Users";
             Text = "Users";
             Load += Users_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvemployee).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -253,7 +253,7 @@
         private Label label5;
         private Button btnadd;
         private Button btnedit;
-        private DataGridView dataGridView1;
+        private DataGridView dgvemployee;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
         private ComboBox cmbrole;

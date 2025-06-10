@@ -23,7 +23,30 @@ namespace DesktopProject
             }
             return res;
         }
+        //////////////
+        public static EmployeeList GetListEmployee( string Role)
+        {
+            DataTable dt = db.GetDataTable($"select *from Employees where Role='{Role}'");
+            //Employee res = new Employee();
+            var res = ConvertFormDataToDaptList(dt);
 
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    res = ConvertFromDataRowToEmp(dr);
+
+            //}
+            return res;
+        }
+
+
+        internal static EmployeeList ConvertFormDataToDaptList(DataTable dt)
+        {
+            var res = new EmployeeList();
+            foreach (DataRow dr in dt.Rows)
+                res.Add(ConvertFromDataRowToEmp(dr));
+            return res;
+        }
+        ////////////
         internal static Employee ConvertFromDataRowToEmp(DataRow dr)
         {
             var res = new Employee();

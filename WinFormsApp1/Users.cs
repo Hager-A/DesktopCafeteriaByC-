@@ -40,6 +40,11 @@ namespace WinFormsApp1
             cmbrole.Items.Add("Admin");
             cmbrole.Items.Add("Employee");
             cmbrole.SelectedIndex = 0;
+            ////dgvemployee
+            EmployeeList emps = EmployeeManager.GetListEmployee("Employee");
+
+            dgvemployee.DataSource = emps.Select(e=>new {e.Name,e.Email,e.Password }).ToList();
+
         }
 
         private void btnback_Click(object sender, EventArgs e)

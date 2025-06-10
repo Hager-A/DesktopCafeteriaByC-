@@ -30,7 +30,7 @@
         {
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
-            radioButton1 = new RadioButton();
+            SweetsBtn = new RadioButton();
             radioButton2 = new RadioButton();
             drinksBtn = new RadioButton();
             button1 = new Button();
@@ -62,17 +62,18 @@
             dataGridView2.Size = new Size(312, 252);
             dataGridView2.TabIndex = 1;
             // 
-            // radioButton1
+            // SweetsBtn
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(275, 24);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(61, 19);
-            radioButton1.TabIndex = 2;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Sweets";
-            radioButton1.UseVisualStyleBackColor = true;
+            SweetsBtn.AutoSize = true;
+            SweetsBtn.Location = new Point(275, 24);
+            SweetsBtn.Margin = new Padding(3, 2, 3, 2);
+            SweetsBtn.Name = "SweetsBtn";
+            SweetsBtn.Size = new Size(61, 19);
+            SweetsBtn.TabIndex = 2;
+            SweetsBtn.TabStop = true;
+            SweetsBtn.Text = "Sweets";
+            SweetsBtn.UseVisualStyleBackColor = true;
+            SweetsBtn.CheckedChanged += SweetsBtn_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -85,6 +86,7 @@
             radioButton2.TabStop = true;
             radioButton2.Text = "Food";
             radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // drinksBtn
             // 
@@ -137,7 +139,7 @@
             Controls.Add(button1);
             Controls.Add(drinksBtn);
             Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
+            Controls.Add(SweetsBtn);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Margin = new Padding(3, 2, 3, 2);
@@ -154,7 +156,7 @@
 
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
-        private RadioButton radioButton1;
+        private RadioButton SweetsBtn;
         private RadioButton radioButton2;
         private RadioButton drinksBtn;
         private Button button1;

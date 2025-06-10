@@ -8,21 +8,34 @@ using System.Threading.Tasks;
 
 namespace DesktopProject
 {
-    public static class OrderManager
+    public static class ProductManager
     {
         static DBManager db = new DBManager();
-        public static Order GetOrder(int Id)
+
+        public static Product GetProductById(int Id)
         {
-            DataTable dt = db.GetDataTable($"select *from Orders where OrderId='{Id}'");
-            Order res = new Order();
+            DataTable dt = db.GetDataTable($"select *from Products where ProductId='{Id}'");
+            Product res = new Product();
 
             foreach (DataRow dr in dt.Rows)
             {
-                res = ConvertFromDataRowToOrder(dr);
+                res = ConvertFromDataRowToProduct(dr);
 
             }
             return res;
         }
+        //public static Product GetProductByType(string Type)
+        //{
+        //    DataTable dt = db.GetDataTable($"select *from Products where Type='{Type}'");
+        //    Product res = new Product();
+
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        res = ConvertFromDataRowToProduct(dr);
+
+        //    }
+        //    return res;
+        //}
         //public static List<Order> GetAllOrders()
         //{
         //    DataTable dt = db.GetDataTable("select *from Orders");
@@ -34,17 +47,22 @@ namespace DesktopProject
         //    return res;
         //}
 
-        internal static Order ConvertFromDataRowToOrder(DataRow dr)
+        internal static Product ConvertFromDataRowToProduct(DataRow dr)
         {
-            var res = new Order();
+            var res = new Product();
             int.TryParse(dr[0]?.ToString() ?? "-1", out int x);
-            res.OrderId = x;
+            res.ProductId = x;
 
-            int.TryParse(dr[1]?.ToString() ?? "-1", out x);
-            res.TotalPrice = x;
+            res.ProductName= dr[1]?.ToString() ?? "-1";
 
             int.TryParse(dr[2]?.ToString() ?? "-1", out x);
-            res.EmpId = x;
+            res.Quantity = x;
+
+            int.TryParse(dr[3]?.ToString() ?? "-1", out x);
+            res.UnitPrice = x;
+
+            res.Type = dr[4]?.ToString() ?? "-1";
+
 
 
             return res;

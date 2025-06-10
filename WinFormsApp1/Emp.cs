@@ -1,4 +1,5 @@
-﻿using DesktopProject;
+﻿using DAL;
+using DesktopProject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace WinFormsApp1
 {
     public partial class Emp : Form
     {
+        static DBManager db = new DBManager();
         Employee em = new Employee();
         public Emp(Employee e)
         {
@@ -29,7 +31,29 @@ namespace WinFormsApp1
         {
             if (drinksBtn.Checked)
             {
-                dataGridView2.
+                DataTable dt = db.GetDataTable("select ProductName from Products where Type='Drinks'");
+
+                dataGridView2.DataSource = dt;
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                DataTable dt = db.GetDataTable("select ProductName from Products where Type='Food'");
+
+                dataGridView2.DataSource = dt;
+            }
+        }
+
+        private void SweetsBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (SweetsBtn.Checked)
+            {
+                DataTable dt = db.GetDataTable("select ProductName from Products where Type='Sweets'");
+
+                dataGridView2.DataSource = dt;
             }
         }
     }

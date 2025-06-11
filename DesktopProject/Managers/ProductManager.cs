@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DesktopProject
 {
@@ -97,9 +98,19 @@ namespace DesktopProject
             return x;
         }
 
+        public static int update(Product product)
+        {
+           
+            int x = db.ExecuteNonQuery($"update Products SET ProductName ='{product.ProductName}',UnitPrice ={product.UnitPrice},Quantity={product.Quantity},Type='{product.Type}'where ProductId={product.ProductId}");
+            return x;
+        }
 
-
-
+        public static int Delete(Product product)
+        {
+            //delete from Employees where
+            int x = db.ExecuteNonQuery($"delete from Products where ProductId={product.ProductId}");
+            return x;
+        }
 
     }
 }

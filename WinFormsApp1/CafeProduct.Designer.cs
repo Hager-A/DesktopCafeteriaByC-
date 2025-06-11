@@ -142,6 +142,7 @@
             btnedit.TabIndex = 18;
             btnedit.Text = "Edit";
             btnedit.UseVisualStyleBackColor = false;
+            btnedit.Click += btnedit_Click;
             // 
             // btnclear
             // 
@@ -168,6 +169,8 @@
             dgvproduct.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvproduct.Size = new Size(509, 406);
             dgvproduct.TabIndex = 20;
+            dgvproduct.CellClick += dgvproduct_CellClick;
+            dgvproduct.CellMouseClick += dgvproduct_CellMouseClick;
             // 
             // radioButton1
             // 

@@ -31,6 +31,8 @@ namespace WinFormsApp1
             ProductList Products = ProductManager.GetProductById("Food");
             dgvproduct.DataSource = Products;
 
+            dgvproduct.Columns["ProductId"].Visible = false;
+            dgvproduct.Columns["Type"].Visible = false;
 
 
         }
@@ -146,6 +148,11 @@ namespace WinFormsApp1
         }
 
         private void dgvproduct_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
+        }
+
+        private void dgvproduct_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = dgvproduct.Rows[e.RowIndex];
             int selected = int.Parse(row.Cells["ProductId"].Value.ToString());

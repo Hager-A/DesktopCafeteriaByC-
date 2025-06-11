@@ -171,6 +171,7 @@
             dgvproduct.TabIndex = 20;
             dgvproduct.CellClick += dgvproduct_CellClick;
             dgvproduct.CellMouseClick += dgvproduct_CellMouseClick;
+            dgvproduct.CellMouseDoubleClick += dgvproduct_CellMouseDoubleClick;
             // 
             // radioButton1
             // 

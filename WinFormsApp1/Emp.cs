@@ -30,6 +30,7 @@ namespace WinFormsApp1
             dataGridView1.Columns.Add("Price", "Price");
             dataGridView1.RowCount = 1;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            totalBox.Text = "0";
         }
 
         private void drinksBtn_CheckedChanged(object sender, EventArgs e)
@@ -116,6 +117,7 @@ namespace WinFormsApp1
 
                     dataGridView2.DataSource = dt;
                 }
+                totalBox.Text = (price+ (int.Parse)(totalBox.Text)).ToString();
             }
             else
             {
@@ -161,9 +163,9 @@ namespace WinFormsApp1
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if(row.IsNewRow) continue; 
+                if (row.IsNewRow) continue;
                 int count = (int)row.Cells[1].Value;
                 string product = row.Cells[0].Value?.ToString() ?? "None";
 
@@ -189,6 +191,16 @@ namespace WinFormsApp1
                 dataGridView1.Rows.Clear();
 
             }
+        }
+
+        private void OkBtn_Click(object sender, EventArgs e)
+        {
+            OrderManager.Insert(int.Parse(totalBox.Text), em.Id);
+        }
+
+        private void totalBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

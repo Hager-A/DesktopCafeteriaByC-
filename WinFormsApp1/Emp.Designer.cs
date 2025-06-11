@@ -40,6 +40,8 @@
             Product = new Label();
             label2 = new Label();
             numericUpDown1 = new NumericUpDown();
+            totalBox = new TextBox();
+            total = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -55,7 +57,7 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(198, 246);
+            dataGridView1.Size = new Size(198, 181);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellMouseDoubleClick += dataGridView1_CellMouseDoubleClick;
@@ -129,6 +131,7 @@
             OkBtn.TabIndex = 7;
             OkBtn.Text = "Ok";
             OkBtn.UseVisualStyleBackColor = true;
+            OkBtn.Click += OkBtn_Click;
             // 
             // productBox
             // 
@@ -172,12 +175,31 @@
             numericUpDown1.Size = new Size(43, 23);
             numericUpDown1.TabIndex = 13;
             // 
+            // totalBox
+            // 
+            totalBox.Location = new Point(540, 236);
+            totalBox.Name = "totalBox";
+            totalBox.Size = new Size(100, 23);
+            totalBox.TabIndex = 14;
+            totalBox.TextChanged += totalBox_TextChanged;
+            // 
+            // total
+            // 
+            total.AutoSize = true;
+            total.Location = new Point(476, 239);
+            total.Name = "total";
+            total.Size = new Size(31, 15);
+            total.TabIndex = 15;
+            total.Text = "total";
+            // 
             // Emp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             ClientSize = new Size(700, 338);
+            Controls.Add(total);
+            Controls.Add(totalBox);
             Controls.Add(numericUpDown1);
             Controls.Add(label2);
             Controls.Add(Product);
@@ -215,5 +237,7 @@
         private Label Product;
         private Label label2;
         private NumericUpDown numericUpDown1;
+        private TextBox totalBox;
+        private Label total;
     }
 }

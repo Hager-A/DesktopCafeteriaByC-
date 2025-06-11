@@ -47,5 +47,13 @@ namespace WinFormsApp1
             login.ShowDialog();
             this.Close();
         }
+
+        private void btnproduct_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CafeProduct product = new CafeProduct(em);
+            product.ShowDialog();
+            this.Close();
+        }
     }
 }

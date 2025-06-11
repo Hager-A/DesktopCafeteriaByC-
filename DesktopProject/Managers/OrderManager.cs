@@ -51,9 +51,9 @@ namespace DesktopProject
         }
 
 
-        public static int Insert(Order order)
+        public static int Insert(int totalprice, int empid)
         {
-            int x = db.ExecuteNonQuery($"insert into Orders(OrderId,TotalPrice,EmpId) values('{order.OrderId}','{order.TotalPrice}','{order.EmpId}')");
+            int x = db.ExecuteNonQuery($"insert into Orders(TotalPrice,EmpId) values('{totalprice}','{empid}')");
             return x;
         }
     }

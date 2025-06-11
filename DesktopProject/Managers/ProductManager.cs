@@ -25,6 +25,27 @@ namespace DesktopProject
             }
             return res;
         }
+
+        public static ProductList GetProductById(string type)
+        {
+            DataTable dt = db.GetDataTable($"select *from Products where Type='{type}'");
+            //Product res = new Product();
+            ProductList res=ConvertFormDataToProductList(dt);
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    res = ConvertFromDataRowToProduct(dr);
+
+            //}
+            return res;
+        }
+
+        internal static ProductList ConvertFormDataToProductList(DataTable dt)
+        {
+            var res = new ProductList();
+            foreach (DataRow dr in dt.Rows)
+                res.Add(ConvertFromDataRowToProduct(dr));
+            return res;
+        }
         //public static Product GetProductByType(string Type)
         //{
         //    DataTable dt = db.GetDataTable($"select *from Products where Type='{Type}'");
@@ -68,7 +89,15 @@ namespace DesktopProject
 
             return res;
         }
-        
+
+        /////
+        public static int Insert(Product product)
+        {
+            int x = db.ExecuteNonQuery($"insert into Products(ProductName,UnitPrice,Quantity,Type) values('{product.ProductName}','{product.UnitPrice}','{product.Quantity}','{product.Type}')");
+            return x;
+        }
+
+
 
 
 

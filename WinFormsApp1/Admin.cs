@@ -55,5 +55,13 @@ namespace WinFormsApp1
             product.ShowDialog();
             this.Close();
         }
+
+        private void btnorder_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            OrderAdmin orderAdmin = new OrderAdmin(em);
+            orderAdmin.ShowDialog();
+            this.Close();
+        }
     }
 }

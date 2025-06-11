@@ -78,6 +78,7 @@
             btnorder.TabIndex = 2;
             btnorder.Text = "Order";
             btnorder.UseVisualStyleBackColor = false;
+            btnorder.Click += btnorder_Click;
             // 
             // btnexit
             // 

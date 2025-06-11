@@ -23,6 +23,29 @@ namespace DesktopProject
             }
             return res;
         }
+
+        public static OrderList GetOrderList(int Id)
+        {
+            DataTable dt = db.GetDataTable($"select * from Orders where EmpId='{Id}'");
+            OrderList res = OrderManager.ConvertFormDataToOrderList(dt);
+
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    res = ConvertFromDataRowToOrder(dr);
+
+            //}
+            return res;
+        }
+
+        internal static OrderList ConvertFormDataToOrderList(DataTable dt)
+        {
+            var res = new OrderList();
+            foreach (DataRow dr in dt.Rows)
+                res.Add(ConvertFromDataRowToOrder(dr));
+            return res;
+        }
+
+
         //public static List<Order> GetAllOrders()
         //{
         //    DataTable dt = db.GetDataTable("select *from Orders");
@@ -56,5 +79,11 @@ namespace DesktopProject
             int x = db.ExecuteNonQuery($"insert into Orders(TotalPrice,EmpId) values('{totalprice}','{empid}')");
             return x;
         }
-    }
+
+        public static int Delete( int orderid)
+        {
+            int x = db.ExecuteNonQuery($"delete from Orders where OrderId={orderid} ");
+            return x;
+        }
+        }
 }

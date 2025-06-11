@@ -33,11 +33,17 @@
             SweetsBtn = new RadioButton();
             radioButton2 = new RadioButton();
             drinksBtn = new RadioButton();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            DeleteBtn = new Button();
+            Cancel = new Button();
+            OkBtn = new Button();
+            productBox = new TextBox();
+            AddBtn = new Button();
+            Product = new Label();
+            label2 = new Label();
+            numericUpDown1 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -47,7 +53,9 @@
             dataGridView1.Location = new Point(466, 37);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(198, 246);
             dataGridView1.TabIndex = 0;
             // 
@@ -59,8 +67,9 @@
             dataGridView2.Margin = new Padding(3, 2, 3, 2);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(312, 252);
+            dataGridView2.Size = new Size(373, 224);
             dataGridView2.TabIndex = 1;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // SweetsBtn
             // 
@@ -101,32 +110,74 @@
             drinksBtn.UseVisualStyleBackColor = true;
             drinksBtn.CheckedChanged += drinksBtn_CheckedChanged;
             // 
-            // button1
+            // DeleteBtn
             // 
-            button1.Location = new Point(466, 303);
-            button1.Name = "button1";
-            button1.Size = new Size(58, 23);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            DeleteBtn.Location = new Point(466, 307);
+            DeleteBtn.Name = "DeleteBtn";
+            DeleteBtn.Size = new Size(58, 23);
+            DeleteBtn.TabIndex = 5;
+            DeleteBtn.Text = "Undo";
+            DeleteBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // Cancel
             // 
-            button2.Location = new Point(545, 303);
-            button2.Name = "button2";
-            button2.Size = new Size(52, 23);
-            button2.TabIndex = 6;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            Cancel.Location = new Point(556, 306);
+            Cancel.Name = "Cancel";
+            Cancel.Size = new Size(52, 23);
+            Cancel.TabIndex = 6;
+            Cancel.Text = "Cancel";
+            Cancel.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // OkBtn
             // 
-            button3.Location = new Point(613, 303);
-            button3.Name = "button3";
-            button3.Size = new Size(51, 23);
-            button3.TabIndex = 7;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            OkBtn.Location = new Point(637, 306);
+            OkBtn.Name = "OkBtn";
+            OkBtn.Size = new Size(51, 23);
+            OkBtn.TabIndex = 7;
+            OkBtn.Text = "Ok";
+            OkBtn.UseVisualStyleBackColor = true;
+            // 
+            // productBox
+            // 
+            productBox.Location = new Point(67, 303);
+            productBox.Name = "productBox";
+            productBox.Size = new Size(100, 23);
+            productBox.TabIndex = 8;
+            // 
+            // AddBtn
+            // 
+            AddBtn.Location = new Point(311, 302);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(75, 23);
+            AddBtn.TabIndex = 10;
+            AddBtn.Text = "Add";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
+            // 
+            // Product
+            // 
+            Product.AutoSize = true;
+            Product.Location = new Point(12, 306);
+            Product.Name = "Product";
+            Product.Size = new Size(49, 15);
+            Product.TabIndex = 11;
+            Product.Text = "Product";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(175, 307);
+            label2.Name = "label2";
+            label2.Size = new Size(40, 15);
+            label2.TabIndex = 12;
+            label2.Text = "Count";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(221, 303);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(43, 23);
+            numericUpDown1.TabIndex = 13;
             // 
             // Emp
             // 
@@ -134,9 +185,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             ClientSize = new Size(700, 338);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(numericUpDown1);
+            Controls.Add(label2);
+            Controls.Add(Product);
+            Controls.Add(AddBtn);
+            Controls.Add(productBox);
+            Controls.Add(OkBtn);
+            Controls.Add(Cancel);
+            Controls.Add(DeleteBtn);
             Controls.Add(drinksBtn);
             Controls.Add(radioButton2);
             Controls.Add(SweetsBtn);
@@ -148,6 +204,7 @@
             Load += Emp_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,8 +216,13 @@
         private RadioButton SweetsBtn;
         private RadioButton radioButton2;
         private RadioButton drinksBtn;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button DeleteBtn;
+        private Button Cancel;
+        private Button OkBtn;
+        private TextBox productBox;
+        private Button AddBtn;
+        private Label Product;
+        private Label label2;
+        private NumericUpDown numericUpDown1;
     }
 }

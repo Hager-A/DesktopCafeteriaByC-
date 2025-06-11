@@ -117,7 +117,7 @@ namespace WinFormsApp1
 
                     dataGridView2.DataSource = dt;
                 }
-                totalBox.Text = (price+ (int.Parse)(totalBox.Text)).ToString();
+                totalBox.Text = (price + (int.Parse)(totalBox.Text)).ToString();
             }
             else
             {
@@ -137,7 +137,9 @@ namespace WinFormsApp1
                 return;
             int count = (int)dataGridView1.Rows[e.RowIndex].Cells[1].Value;
             string product = dataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "None";
+            int price = (int)dataGridView1.Rows[e.RowIndex].Cells[2].Value;
             db.ExecuteNonQuery($"update Products set Quantity+='{count}' where ProductName='{product}'");
+
             if (SweetsBtn.Checked)
             {
                 DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Sweets'");
@@ -156,6 +158,7 @@ namespace WinFormsApp1
 
                 dataGridView2.DataSource = dt;
             }
+            totalBox.Text = ((int.Parse)(totalBox.Text) - price).ToString();
             dataGridView1.Rows.RemoveAt(e.RowIndex);
 
 
@@ -163,12 +166,17 @@ namespace WinFormsApp1
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+            int count;
+            string product;
+            int price;
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.IsNewRow) continue;
-                int count = (int)row.Cells[1].Value;
-                string product = row.Cells[0].Value?.ToString() ?? "None";
-
+                count = (int)row.Cells[1].Value;
+                product = row.Cells[0].Value?.ToString() ?? "None";
+                price = (int)row.Cells[2].Value;
+                totalBox.Text = ((int.Parse)(totalBox.Text) - price).ToString();
                 db.ExecuteNonQuery($"update Products set Quantity+='{count}' where ProductName='{product}'");
                 if (SweetsBtn.Checked)
                 {
@@ -188,9 +196,10 @@ namespace WinFormsApp1
 
                     dataGridView2.DataSource = dt;
                 }
-                dataGridView1.Rows.Clear();
+                
 
             }
+            dataGridView1.Rows.Clear();
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
@@ -201,6 +210,16 @@ namespace WinFormsApp1
         private void totalBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            
+            this.Hide();
+            Form1 newform = new Form1();
+            newform.ShowDialog();
+            this.Close();
+            
         }
     }
 }

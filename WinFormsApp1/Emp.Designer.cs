@@ -42,6 +42,7 @@
             numericUpDown1 = new NumericUpDown();
             totalBox = new TextBox();
             total = new Label();
+            BackBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -115,22 +116,28 @@
             // 
             // Cancel
             // 
-            Cancel.Location = new Point(476, 301);
+            Cancel.BackColor = Color.FromArgb(128, 64, 0);
+            Cancel.FlatStyle = FlatStyle.Flat;
+            Cancel.ForeColor = Color.White;
+            Cancel.Location = new Point(452, 299);
             Cancel.Name = "Cancel";
-            Cancel.Size = new Size(58, 23);
+            Cancel.Size = new Size(100, 25);
             Cancel.TabIndex = 6;
-            Cancel.Text = "Cancel";
-            Cancel.UseVisualStyleBackColor = true;
+            Cancel.Text = "Cancel Order";
+            Cancel.UseVisualStyleBackColor = false;
             Cancel.Click += Cancel_Click;
             // 
             // OkBtn
             // 
-            OkBtn.Location = new Point(582, 301);
+            OkBtn.BackColor = Color.FromArgb(128, 64, 0);
+            OkBtn.FlatStyle = FlatStyle.Flat;
+            OkBtn.ForeColor = Color.White;
+            OkBtn.Location = new Point(570, 299);
             OkBtn.Name = "OkBtn";
-            OkBtn.Size = new Size(58, 25);
+            OkBtn.Size = new Size(106, 25);
             OkBtn.TabIndex = 7;
-            OkBtn.Text = "Ok";
-            OkBtn.UseVisualStyleBackColor = true;
+            OkBtn.Text = "Confirm Order";
+            OkBtn.UseVisualStyleBackColor = false;
             OkBtn.Click += OkBtn_Click;
             // 
             // productBox
@@ -142,12 +149,15 @@
             // 
             // AddBtn
             // 
+            AddBtn.BackColor = Color.FromArgb(128, 64, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
             AddBtn.Location = new Point(311, 302);
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(75, 23);
             AddBtn.TabIndex = 10;
             AddBtn.Text = "Add";
-            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.UseVisualStyleBackColor = false;
             AddBtn.Click += AddBtn_Click;
             // 
             // Product
@@ -186,11 +196,24 @@
             // total
             // 
             total.AutoSize = true;
-            total.Location = new Point(476, 239);
+            total.Location = new Point(486, 239);
             total.Name = "total";
-            total.Size = new Size(31, 15);
+            total.Size = new Size(39, 15);
             total.TabIndex = 15;
-            total.Text = "total";
+            total.Text = "TOTAL";
+            // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.FromArgb(128, 64, 0);
+            BackBtn.FlatStyle = FlatStyle.Flat;
+            BackBtn.ForeColor = Color.White;
+            BackBtn.Location = new Point(601, -1);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(75, 33);
+            BackBtn.TabIndex = 16;
+            BackBtn.Text = "log out";
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
             // 
             // Emp
             // 
@@ -198,6 +221,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             ClientSize = new Size(700, 338);
+            Controls.Add(BackBtn);
             Controls.Add(total);
             Controls.Add(totalBox);
             Controls.Add(numericUpDown1);
@@ -239,5 +263,6 @@
         private NumericUpDown numericUpDown1;
         private TextBox totalBox;
         private Label total;
+        private Button BackBtn;
     }
 }

@@ -73,6 +73,7 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(373, 224);
             dataGridView2.TabIndex = 1;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // SweetsBtn

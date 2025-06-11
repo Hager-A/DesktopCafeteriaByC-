@@ -118,7 +118,7 @@ namespace WinFormsApp1
                 //int check;
                 if (txtemail.Text == "" || txtname.Text == "" || cmbrole.Text == "" || txtpassword.Text == "" || txtcomfirm.Text == "")
                 {
-                    MessageBox.Show("you should fill all filled");
+                    MessageBox.Show("you should fill all fields");
 
 
                 }
@@ -128,7 +128,11 @@ namespace WinFormsApp1
                     string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
                     string patternName = @"^[a-zA-Z]+$";
 
-                    if (Regex.IsMatch(txtname.Text, patternName) && txtname.Text.Length >= 2)
+                    
+
+                    if (Regex.IsMatch(txtname.Text, patternName) && txtname.Text.Length >= 2 &&
+                        Regex.IsMatch(txtpassword.Text, patternPassword) && txtpassword.Text==txtcomfirm.Text &&
+                        Regex.IsMatch(txtemail.Text, patternEmail))
                     {
 
                         int x = EmployeeManager.Insert(emm);
@@ -145,8 +149,12 @@ namespace WinFormsApp1
                     }
                     else
                     {
-                        MessageBox.Show("you should name character");
-
+                        if(!Regex.IsMatch(txtname.Text, patternName) || txtname.Text.Length < 2 )
+                            MessageBox.Show("write a valid name");
+                        else if(!Regex.IsMatch(txtpassword.Text, patternPassword) || txtpassword.Text != txtcomfirm.Text)
+                            MessageBox.Show("write a valid password or chech if the passord and the confirm password match");
+                        else if (!Regex.IsMatch(txtemail.Text, patternEmail))
+                            MessageBox.Show("write a valid email");
                     }
 
 
@@ -160,7 +168,7 @@ namespace WinFormsApp1
             else
             {
 
-                MessageBox.Show("exist this Email");
+                MessageBox.Show("this Email exist");
 
             }
 
@@ -173,33 +181,65 @@ namespace WinFormsApp1
 
             if (emm.Name == null)
             {
-                MessageBox.Show("you should be select the row");
+                MessageBox.Show("you should select a user");
             }
             else
             {
-                emm.Email = txtemail.Text;
-                emm.Name = txtname.Text;
-                emm.Role = cmbrole.Text;
-                emm.Password = txtpassword.Text;
 
-                int x = EmployeeManager.Update(emm);
-
-                MessageBox.Show($"{x}");
-
-                if (radioButton1.Checked)
-                    dgvemployee.DataSource = EmployeeManager.GetListEmployee("Admin");
-                else if (radioButton2.Checked)
-                    dgvemployee.DataSource = EmployeeManager.GetListEmployee("Employee");
-                txtemail.Text = "";
-                txtname.Text = "";
-                cmbrole.Text = "";
-                txtpassword.Text = "";
-                txtcomfirm.Text = "";
-                //MessageBox.Show("your employee is update");
-
-                if (emm.Id == em.Id)
+                if (txtemail.Text == "" || txtname.Text == "" || cmbrole.Text == "" || txtpassword.Text == "" || txtcomfirm.Text == "")
                 {
-                    em = emm;
+                    MessageBox.Show("you should fill all fields");
+
+
+                }
+                else
+                {
+                    string patternEmail = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                    string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
+                    string patternName = @"^[a-zA-Z]+$";
+
+
+
+                    if (Regex.IsMatch(txtname.Text, patternName) && txtname.Text.Length >= 2 &&
+                        Regex.IsMatch(txtpassword.Text, patternPassword) && txtpassword.Text == txtcomfirm.Text &&
+                        Regex.IsMatch(txtemail.Text, patternEmail))
+                    {
+                        emm.Email = txtemail.Text;
+                        emm.Name = txtname.Text;
+                        emm.Role = cmbrole.Text;
+                        emm.Password = txtpassword.Text;
+
+                        int x = EmployeeManager.Update(emm);
+
+                        MessageBox.Show("updated succesfully");
+
+                        if (radioButton1.Checked)
+                            dgvemployee.DataSource = EmployeeManager.GetListEmployee("Admin");
+                        else if (radioButton2.Checked)
+                            dgvemployee.DataSource = EmployeeManager.GetListEmployee("Employee");
+                        txtemail.Text = "";
+                        txtname.Text = "";
+                        cmbrole.Text = "";
+                        txtpassword.Text = "";
+                        txtcomfirm.Text = "";
+                        //MessageBox.Show("your employee is update");
+
+                        if (emm.Id == em.Id)
+                        {
+                            em = emm;
+
+                        }
+                    }
+                    else
+                    {
+                        if (!Regex.IsMatch(txtname.Text, patternName) || txtname.Text.Length < 2)
+                            MessageBox.Show("write a valid name");
+                        else if (!Regex.IsMatch(txtpassword.Text, patternPassword) || txtpassword.Text != txtcomfirm.Text)
+                            MessageBox.Show("write a valid password or chech if the passord and the confirm password match");
+                        else if (!Regex.IsMatch(txtemail.Text, patternEmail))
+                            MessageBox.Show("write a valid email");
+                    }
+
 
                 }
             }

@@ -65,27 +65,7 @@ namespace WinFormsApp1
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
-
-                string value = row.Cells[0].Value?.ToString() ?? "None";
-                productBox.Text = value;
-
-                if (decimal.TryParse(row.Cells[1].Value?.ToString(), out decimal maxValue))
-                {
-                    numericUpDown1.Maximum = maxValue;
-                }
-                else
-                {
-                    numericUpDown1.Maximum = 0;
-                    numericUpDown1.Value = 0;
-                }
-            }
-            else
-            {
-                productBox.Text = "None";
-            }
+            
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -196,7 +176,7 @@ namespace WinFormsApp1
 
                     dataGridView2.DataSource = dt;
                 }
-                
+
 
             }
             dataGridView1.Rows.Clear();
@@ -205,6 +185,22 @@ namespace WinFormsApp1
         private void OkBtn_Click(object sender, EventArgs e)
         {
             OrderManager.Insert(int.Parse(totalBox.Text), em.Id);
+            //int count;
+            //string product;
+            //int price;
+            //foreach (DataGridViewRow row in dataGridView1.Rows)
+            //{
+            //    if (row.IsNewRow) continue;
+            //    count = (int)row.Cells[1].Value;
+            //    product = row.Cells[0].Value?.ToString() ?? "None";
+            //    price = (int)row.Cells[2].Value;
+            //    db.ExecuteNonQuery($"update Order_Products set OrderId=,ProductId,Quantity,Price");
+               
+
+
+            //}
+            dataGridView1.Rows.Clear();
+            totalBox.Text = "0";
         }
 
         private void totalBox_TextChanged(object sender, EventArgs e)
@@ -214,12 +210,37 @@ namespace WinFormsApp1
 
         private void BackBtn_Click(object sender, EventArgs e)
         {
-            
+
             this.Hide();
             Form1 newform = new Form1();
             newform.ShowDialog();
             this.Close();
-            
+
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+
+                string value = row.Cells[0].Value?.ToString() ?? "None";
+                productBox.Text = value;
+
+                if (decimal.TryParse(row.Cells[1].Value?.ToString(), out decimal maxValue))
+                {
+                    numericUpDown1.Maximum = maxValue;
+                }
+                else
+                {
+                    numericUpDown1.Maximum = 0;
+                    numericUpDown1.Value = 0;
+                }
+            }
+            else
+            {
+                productBox.Text = "None";
+            }
         }
     }
 }

@@ -33,7 +33,6 @@
             SweetsBtn = new RadioButton();
             radioButton2 = new RadioButton();
             drinksBtn = new RadioButton();
-            DeleteBtn = new Button();
             Cancel = new Button();
             OkBtn = new Button();
             productBox = new TextBox();
@@ -58,6 +57,8 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(198, 246);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellMouseDoubleClick += dataGridView1_CellMouseDoubleClick;
             // 
             // dataGridView2
             // 
@@ -110,29 +111,21 @@
             drinksBtn.UseVisualStyleBackColor = true;
             drinksBtn.CheckedChanged += drinksBtn_CheckedChanged;
             // 
-            // DeleteBtn
-            // 
-            DeleteBtn.Location = new Point(466, 307);
-            DeleteBtn.Name = "DeleteBtn";
-            DeleteBtn.Size = new Size(58, 23);
-            DeleteBtn.TabIndex = 5;
-            DeleteBtn.Text = "Undo";
-            DeleteBtn.UseVisualStyleBackColor = true;
-            // 
             // Cancel
             // 
-            Cancel.Location = new Point(556, 306);
+            Cancel.Location = new Point(476, 301);
             Cancel.Name = "Cancel";
-            Cancel.Size = new Size(52, 23);
+            Cancel.Size = new Size(58, 23);
             Cancel.TabIndex = 6;
             Cancel.Text = "Cancel";
             Cancel.UseVisualStyleBackColor = true;
+            Cancel.Click += Cancel_Click;
             // 
             // OkBtn
             // 
-            OkBtn.Location = new Point(637, 306);
+            OkBtn.Location = new Point(582, 301);
             OkBtn.Name = "OkBtn";
-            OkBtn.Size = new Size(51, 23);
+            OkBtn.Size = new Size(58, 25);
             OkBtn.TabIndex = 7;
             OkBtn.Text = "Ok";
             OkBtn.UseVisualStyleBackColor = true;
@@ -192,7 +185,6 @@
             Controls.Add(productBox);
             Controls.Add(OkBtn);
             Controls.Add(Cancel);
-            Controls.Add(DeleteBtn);
             Controls.Add(drinksBtn);
             Controls.Add(radioButton2);
             Controls.Add(SweetsBtn);
@@ -216,7 +208,6 @@
         private RadioButton SweetsBtn;
         private RadioButton radioButton2;
         private RadioButton drinksBtn;
-        private Button DeleteBtn;
         private Button Cancel;
         private Button OkBtn;
         private TextBox productBox;

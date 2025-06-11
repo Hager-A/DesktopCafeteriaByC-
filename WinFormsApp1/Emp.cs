@@ -86,25 +86,108 @@ namespace WinFormsApp1
                 productBox.Text = "None";
             }
         }
-        
+
         private void AddBtn_Click(object sender, EventArgs e)
         {
             if (productBox.Text != "None")
             {
-                
+
                 string product = productBox.Text;
                 int quantity = (int)numericUpDown1.Value;
-                int price= (int)db.ExecuteScalar($"select UnitPrice from Products where ProductName='{product}'")*quantity;
+                int price = (int)db.ExecuteScalar($"select UnitPrice from Products where ProductName='{product}'") * quantity;
                 dataGridView1.Rows.Add(product, quantity, price);
                 db.ExecuteNonQuery($"update Products set Quantity-='{quantity}' where ProductName='{product}'");
                 //here we update the quantity of the product in the database
-                //عايزه اكررها 3 مرات 
-                DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Drinks'");
-                dataGridView2.DataSource = dt;
+                if (SweetsBtn.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Sweets'");
+
+                    dataGridView2.DataSource = dt;
+                }
+                if (radioButton2.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Food'");
+
+                    dataGridView2.DataSource = dt;
+                }
+                if (drinksBtn.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Drinks'");
+
+                    dataGridView2.DataSource = dt;
+                }
             }
             else
             {
                 MessageBox.Show("Please select a product first.");
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+            int count = (int)dataGridView1.Rows[e.RowIndex].Cells[1].Value;
+            string product = dataGridView1.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "None";
+            db.ExecuteNonQuery($"update Products set Quantity+='{count}' where ProductName='{product}'");
+            if (SweetsBtn.Checked)
+            {
+                DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Sweets'");
+
+                dataGridView2.DataSource = dt;
+            }
+            else if (radioButton2.Checked)
+            {
+                DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Food'");
+
+                dataGridView2.DataSource = dt;
+            }
+            else if (drinksBtn.Checked)
+            {
+                DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Drinks'");
+
+                dataGridView2.DataSource = dt;
+            }
+            dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if(row.IsNewRow) continue; 
+                int count = (int)row.Cells[1].Value;
+                string product = row.Cells[0].Value?.ToString() ?? "None";
+
+                db.ExecuteNonQuery($"update Products set Quantity+='{count}' where ProductName='{product}'");
+                if (SweetsBtn.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Sweets'");
+
+                    dataGridView2.DataSource = dt;
+                }
+                else if (radioButton2.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Food'");
+
+                    dataGridView2.DataSource = dt;
+                }
+                else if (drinksBtn.Checked)
+                {
+                    DataTable dt = db.GetDataTable("select ProductName,Quantity,UnitPrice from Products where Type='Drinks'");
+
+                    dataGridView2.DataSource = dt;
+                }
+                dataGridView1.Rows.Clear();
+
             }
         }
     }

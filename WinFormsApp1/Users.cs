@@ -123,7 +123,7 @@ namespace WinFormsApp1
                 cmbrole.Text = "";
                 txtpassword.Text = "";
                 txtcomfirm.Text = "";
-                em = emm;
+                //em = emm;
 
 
 
@@ -140,7 +140,7 @@ namespace WinFormsApp1
         private void btnedit_Click(object sender, EventArgs e)
         {
             string email = txtemail.Text;
-            Employee em = EmployeeManager.CheckEmployee(email);
+            Employee emm = EmployeeManager.CheckEmployee(email);
 
             if (em.Name ==null)
             {
@@ -148,12 +148,12 @@ namespace WinFormsApp1
             }
             else
             {
-                em.Email = txtemail.Text;
-                em.Name = txtname.Text;
-                em.Role = cmbrole.Text;
-                em.Password = txtpassword.Text;
+                emm.Email = txtemail.Text;
+                emm.Name = txtname.Text;
+                emm.Role = cmbrole.Text;
+                emm.Password = txtpassword.Text;
 
-                int x = EmployeeManager.Update(em);
+                int x = EmployeeManager.Update(emm);
 
                 MessageBox.Show($"{x}");
 
@@ -167,6 +167,11 @@ namespace WinFormsApp1
                 txtpassword.Text = "";
                 txtcomfirm.Text = "";
                 //MessageBox.Show("your employee is update");
+
+                if (emm.Email == em.Email)
+                {
+                    em = emm;
+                }
             }
 
 

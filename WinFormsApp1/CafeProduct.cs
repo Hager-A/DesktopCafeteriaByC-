@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -75,52 +76,120 @@ namespace WinFormsApp1
 
         private void btnadd_Click(object sender, EventArgs e)
         {
-            Product product = new Product();
 
-            product.ProductName = txtProduct.Text;
-            product.UnitPrice = int.Parse(txtprice.Text);
-            product.Quantity = int.Parse(txtquantity.Text);
-            product.Type = cmbtype.Text;
-            int x = ProductManager.Insert(product);
-            if (radioButton1.Checked)
-                dgvproduct.DataSource = ProductManager.GetProductById("Food");
-            else if (radioButton2.Checked)
-                dgvproduct.DataSource = ProductManager.GetProductById("Drinks");
-            else if (radioButton3.Checked)
-                dgvproduct.DataSource = ProductManager.GetProductById("Sweets");
+            if (txtProduct.Text == "" || txtprice.Text == "" || txtquantity.Text == "" || cmbtype.Text == "")
+            {
+                MessageBox.Show("you should fill all fields");
 
-            txtprice.Text = "";
-            txtProduct.Text = "";
-            txtquantity.Text = "";
-            cmbtype.Text = "";
+
+            }
+            else
+            {
+                string patternName = @"^[a-zA-Z\s]+$";
+
+
+
+                if (Regex.IsMatch(txtProduct.Text, patternName)&&int.TryParse(txtprice.Text,out int number )&& int.TryParse(txtquantity.Text, out int number1))
+                {
+
+                    Product product = new Product();
+
+                    product.ProductName = txtProduct.Text;
+                    product.UnitPrice = int.Parse(txtprice.Text);
+                    product.Quantity = int.Parse(txtquantity.Text);
+                    product.Type = cmbtype.Text;
+                    int x = ProductManager.Insert(product);
+                    if (radioButton1.Checked)
+                        dgvproduct.DataSource = ProductManager.GetProductById("Food");
+                    else if (radioButton2.Checked)
+                        dgvproduct.DataSource = ProductManager.GetProductById("Drinks");
+                    else if (radioButton3.Checked)
+                        dgvproduct.DataSource = ProductManager.GetProductById("Sweets");
+
+                    txtprice.Text = "";
+                    txtProduct.Text = "";
+                    txtquantity.Text = "";
+                    cmbtype.Text = "";
+                
+                }
+                else
+                {
+                    if (!Regex.IsMatch(txtProduct.Text, patternName) )
+                        MessageBox.Show("write a valid product name");
+                    
+                    else if (!int.TryParse(txtquantity.Text, out number1))
+                        MessageBox.Show("write a valid quantity value");
+                    else if (!int.TryParse(txtprice.Text, out number))
+                        MessageBox.Show("write a valid price value");
+                }
+
+
+            }
         }
         int selectindex = -1;
+
+
+
+
+
+
+        
         private void btnedit_Click(object sender, EventArgs e)
         {
             Product product = ProductManager.GetProductById(selectindex);
 
             if (product.ProductName != null)
             {
-                product.ProductName = txtProduct.Text;
-                product.UnitPrice = int.Parse(txtprice.Text);
-                product.Quantity = int.Parse(txtquantity.Text);
-                product.Type = cmbtype.Text;
-                int x = ProductManager.update(product);
-                MessageBox.Show("Update is acceptance");
-                selectindex = -1;
+                if (txtProduct.Text == "" || txtprice.Text == "" || txtquantity.Text == "" || cmbtype.Text == "")
+                {
+                    MessageBox.Show("you should fill all fields");
 
-                if (radioButton1.Checked)
-                    dgvproduct.DataSource = ProductManager.GetProductById("Food");
-                else if (radioButton2.Checked)
-                    dgvproduct.DataSource = ProductManager.GetProductById("Drinks");
-                else if (radioButton3.Checked)
-                    dgvproduct.DataSource = ProductManager.GetProductById("Sweets");
 
-                txtprice.Text = "";
-                txtProduct.Text = "";
-                txtquantity.Text = "";
-                cmbtype.Text = "";
+                }
+                else
+                {
+                    string patternName = @"^[a-zA-Z\s]+$";
 
+
+
+                    if (Regex.IsMatch(txtProduct.Text, patternName) && int.TryParse(txtprice.Text, out int number) && int.TryParse(txtquantity.Text, out int number1))
+                    {
+
+                        product.ProductName = txtProduct.Text;
+                        product.UnitPrice = int.Parse(txtprice.Text);
+                        product.Quantity = int.Parse(txtquantity.Text);
+                        product.Type = cmbtype.Text;
+                        int x = ProductManager.update(product);
+                        MessageBox.Show("Update is accepted");
+                        selectindex = -1;
+
+                        if (radioButton1.Checked)
+                            dgvproduct.DataSource = ProductManager.GetProductById("Food");
+                        else if (radioButton2.Checked)
+                            dgvproduct.DataSource = ProductManager.GetProductById("Drinks");
+                        else if (radioButton3.Checked)
+                            dgvproduct.DataSource = ProductManager.GetProductById("Sweets");
+
+                        txtprice.Text = "";
+                        txtProduct.Text = "";
+                        txtquantity.Text = "";
+                        cmbtype.Text = "";
+
+                    }
+                    else
+                    {
+                        if (!Regex.IsMatch(txtProduct.Text, patternName))
+                            MessageBox.Show("write a valid product name");
+                        
+                        else if (!int.TryParse(txtquantity.Text, out number1))
+                            MessageBox.Show("write a valid quantity value");
+
+                        else if (!int.TryParse(txtprice.Text, out number))
+                            MessageBox.Show("write a valid price value");
+                    }
+
+
+                }
             }
             else
             {

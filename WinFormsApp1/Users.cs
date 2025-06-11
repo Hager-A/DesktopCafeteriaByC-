@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -93,6 +94,7 @@ namespace WinFormsApp1
                 txtpassword.Text = row.Cells["Password"].Value.ToString();
                 cmbrole.Text = row.Cells["Role"].Value.ToString();
                 selectindex = int.Parse(row.Cells["Id"].Value.ToString());
+                //MessageBox.Show($"{selectindex}");
                 //MessageBox.Show(row.Cells["Id"].Value.ToString());
 
             }
@@ -107,22 +109,49 @@ namespace WinFormsApp1
 
             if (emm.Name == null)
             {
+
                 //MessageBox.Show("not Email exist");
                 emm.Email = txtemail.Text;
                 emm.Name = txtname.Text;
                 emm.Role = cmbrole.Text;
                 emm.Password = txtpassword.Text;
-                int x = EmployeeManager.Insert(emm);
-                if (radioButton1.Checked)
-                    dgvemployee.DataSource = EmployeeManager.GetListEmployee("Admin");
-                else if (radioButton2.Checked)
-                    dgvemployee.DataSource = EmployeeManager.GetListEmployee("Employee");
+                //int check;
+                if (txtemail.Text == "" || txtname.Text == "" || cmbrole.Text == "" || txtpassword.Text == "" || txtcomfirm.Text == "")
+                {
+                    MessageBox.Show("you should fill all filled");
 
-                txtemail.Text = "";
-                txtname.Text = "";
-                cmbrole.Text = "";
-                txtpassword.Text = "";
-                txtcomfirm.Text = "";
+
+                }
+                else
+                {
+                    string patternEmail = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+                    string patternPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
+                    string patternName = @"^[a-zA-Z]+$";
+
+                    if (Regex.IsMatch(txtname.Text, patternName) && txtname.Text.Length >= 2)
+                    {
+
+                        int x = EmployeeManager.Insert(emm);
+                        if (radioButton1.Checked)
+                            dgvemployee.DataSource = EmployeeManager.GetListEmployee("Admin");
+                        else if (radioButton2.Checked)
+                            dgvemployee.DataSource = EmployeeManager.GetListEmployee("Employee");
+
+                        txtemail.Text = "";
+                        txtname.Text = "";
+                        cmbrole.Text = "";
+                        txtpassword.Text = "";
+                        txtcomfirm.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("you should name character");
+
+                    }
+
+
+                }
+
                 //em = emm;
 
 
@@ -140,9 +169,9 @@ namespace WinFormsApp1
         private void btnedit_Click(object sender, EventArgs e)
         {
             string email = txtemail.Text;
-            Employee emm = EmployeeManager.CheckEmployee(email);
+            Employee emm = EmployeeManager.CheckEmployee(selectindex);
 
-            if (em.Name ==null)
+            if (emm.Name == null)
             {
                 MessageBox.Show("you should be select the row");
             }
@@ -168,13 +197,51 @@ namespace WinFormsApp1
                 txtcomfirm.Text = "";
                 //MessageBox.Show("your employee is update");
 
-                if (emm.Email == em.Email)
+                if (emm.Id == em.Id)
                 {
                     em = emm;
+
                 }
             }
 
 
+        }
+
+        private void btnclear_Click(object sender, EventArgs e)
+        {
+            selectindex = 0;
+
+            txtemail.Text = "";
+            txtname.Text = "";
+            cmbrole.Text = "";
+            txtpassword.Text = "";
+            txtcomfirm.Text = "";
+
+        }
+
+        private void dgvemployee_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //DialogResult check = MessageBox.Show("I are your sure you want to delete it");
+            //if (check == DialogResult.No)
+            //{
+                DataGridViewRow row = dgvemployee.Rows[e.RowIndex];
+           int selected = int.Parse(row.Cells["Id"].Value.ToString());
+            Employee emm = EmployeeManager.CheckEmployee(selected);
+            int x = EmployeeManager.Delete(emm);
+
+            if (radioButton1.Checked)
+                dgvemployee.DataSource = EmployeeManager.GetListEmployee("Admin");
+            else if (radioButton2.Checked)
+                dgvemployee.DataSource = EmployeeManager.GetListEmployee("Employee");
+            txtemail.Text = "";
+            txtname.Text = "";
+            cmbrole.Text = "";
+            txtpassword.Text = "";
+            txtcomfirm.Text = "";
+
+
+               
+            //}
         }
     }
 }

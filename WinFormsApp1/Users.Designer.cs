@@ -44,6 +44,7 @@
             radioButton2 = new RadioButton();
             cmbrole = new ComboBox();
             btnback = new Button();
+            btnclear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             SuspendLayout();
             // 
@@ -140,7 +141,7 @@
             btnadd.ForeColor = Color.White;
             btnadd.Location = new Point(12, 409);
             btnadd.Name = "btnadd";
-            btnadd.Size = new Size(94, 29);
+            btnadd.Size = new Size(80, 29);
             btnadd.TabIndex = 10;
             btnadd.Text = "Add";
             btnadd.UseVisualStyleBackColor = false;
@@ -151,9 +152,9 @@
             btnedit.BackColor = Color.FromArgb(128, 64, 0);
             btnedit.FlatStyle = FlatStyle.Flat;
             btnedit.ForeColor = Color.White;
-            btnedit.Location = new Point(137, 409);
+            btnedit.Location = new Point(108, 409);
             btnedit.Name = "btnedit";
-            btnedit.Size = new Size(94, 29);
+            btnedit.Size = new Size(78, 29);
             btnedit.TabIndex = 11;
             btnedit.Text = "Edit";
             btnedit.UseVisualStyleBackColor = false;
@@ -172,6 +173,7 @@
             dgvemployee.Size = new Size(509, 406);
             dgvemployee.TabIndex = 12;
             dgvemployee.CellClick += dgvemployee_CellClick;
+            dgvemployee.CellMouseDoubleClick += dgvemployee_CellMouseDoubleClick;
             // 
             // radioButton1
             // 
@@ -218,12 +220,26 @@
             btnback.UseVisualStyleBackColor = false;
             btnback.Click += btnback_Click;
             // 
+            // btnclear
+            // 
+            btnclear.BackColor = Color.FromArgb(128, 64, 0);
+            btnclear.FlatStyle = FlatStyle.Flat;
+            btnclear.ForeColor = Color.White;
+            btnclear.Location = new Point(192, 409);
+            btnclear.Name = "btnclear";
+            btnclear.Size = new Size(83, 29);
+            btnclear.TabIndex = 17;
+            btnclear.Text = "Clear";
+            btnclear.UseVisualStyleBackColor = false;
+            btnclear.Click += btnclear_Click;
+            // 
             // Users
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnclear);
             Controls.Add(btnback);
             Controls.Add(cmbrole);
             Controls.Add(radioButton2);
@@ -266,5 +282,6 @@
         private RadioButton radioButton2;
         private ComboBox cmbrole;
         private Button btnback;
+        private Button btnclear;
     }
 }

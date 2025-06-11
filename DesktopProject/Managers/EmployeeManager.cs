@@ -36,6 +36,20 @@ namespace DesktopProject
             }
             return res;
         }
+
+
+        public static Employee CheckEmployee(int id)
+        {
+            DataTable dt = db.GetDataTable($"select *from Employees where Id='{id}'");
+            Employee res = new Employee();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                res = ConvertFromDataRowToEmp(dr);
+
+            }
+            return res;
+        }
         //////////////
         public static EmployeeList GetListEmployee( string Role)
         {
@@ -84,6 +98,11 @@ namespace DesktopProject
         public static int Update(Employee employee)
         {
             int x = db.ExecuteNonQuery($"UPDATE employees SET Email = '{employee.Email}', Name = '{employee.Name}' ,Password='{employee.Password}',Role='{employee.Role}' WHERE Id = {employee.Id};");
+            return x;
+        }
+        public static int Delete(Employee employee)
+        {
+            int x = db.ExecuteNonQuery($"delete from Employees where Id = {employee.Id};");
             return x;
         }
     }
